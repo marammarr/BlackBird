@@ -117,7 +117,7 @@ handlePostClick = () => {
     ) */
     //console.log(JSON.stringify(tmp))
 
-    axios({ method:'POST',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA, 
+    axios({ method:'POST',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.KRS, 
             headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
                 'Content-Type':'application/json',
                 'Accepted-Language':'application/json'

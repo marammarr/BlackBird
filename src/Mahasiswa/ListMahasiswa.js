@@ -115,6 +115,9 @@ renderList = (item,index) => {
                 <Text note>{item.alamat}</Text>
             </Body>
             <Right>
+                <Button  onPress={()=>this.props.navigation.navigate('Edit',{item})}>
+                    <Icon name="md-pencil"></Icon>
+                </Button>
                 <Button  onPress={()=>this.hapusData(item)}>
                     <Icon name="md-trash"></Icon>
                 </Button>
