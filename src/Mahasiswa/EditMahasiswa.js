@@ -102,6 +102,41 @@ getListData(){
     });
 }
 
+handlePostClick = () => {
+ 
+    // this.props.navigation.state.params.handlePostClick(nama,nim,alamat)
+    /* let tmp = []
+    this.state.formdata.kdMatkul.map((row)=>
+        {
+            let data = this.state.formdata
+            data.kdMatkul = row.kdMatkul 
+            tmp.push(data)
+        }
+    ) */
+    //console.log(JSON.stringify(tmp))
+
+    axios({ method:'PUT',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA, 
+            headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
+                'Content-Type':'application/json',
+                'Accepted-Language':'application/json'
+            },
+            data: this.state.mahasiswa
+    })
+    .then(res => {
+        alert('Berhasil memasukkan data!')
+        this.kosongkan();
+    })
+    .catch(err => {
+        alert("Terdapat kesalahan, "+err.message)
+        console.log("Error : "+JSON.stringify(err))
+        console.log("Mahasiswa : "+JSON.stringify(mahasiswa))
+        throw err;
+    });
+
+    
+ }
+
+
  render() {
  return (
 <Container>
@@ -184,8 +219,8 @@ getListData(){
  <Label>Tanggal Lahir</Label>
  <DatePicker style={styles.bg_abu2} value={this.state.mahasiswa.tanggalLahir} onDateChange={(tgl)=>this.changeHandler("tanggalLahir",tgl)} required />
  </Form>
- <Button block transparent onPress={this.handlePostClick}>
- <Text>Done</Text>
+ <Button block backgroundColor="orange" onPress={this.handlePostClick}>
+ <Text>SIMPAN PERUBAHAN</Text>
  </Button>
  </Content>
  </Container>
