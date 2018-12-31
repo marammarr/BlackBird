@@ -48,10 +48,10 @@ export default class Editscreen extends Component {
     }
 
     changeHandler(name,value){
-        let tmp=this.state.formdata
+        let tmp=this.state.mahasiswa
         tmp[name]=value
         this.setState({
-            formdata:tmp
+            mahasiswa:tmp
         })
      }
 
@@ -61,6 +61,8 @@ componentDidMount(){
         mahasiswa: this.props.navigation.state.params.item
     });
     this.getListData();
+
+    console.warn("Mahasiswa : "+JSON.stringify(this.props.navigation.state.params.item))
 }
 
 getListData(){
@@ -129,7 +131,7 @@ handlePostClick = () => {
     .catch(err => {
         alert("Terdapat kesalahan, "+err.message)
         console.log("Error : "+JSON.stringify(err))
-        console.log("Mahasiswa : "+JSON.stringify(mahasiswa))
+        console.log("Mahasiswa : "+JSON.stringify(this.state.mahasiswa))
         throw err;
     });
 

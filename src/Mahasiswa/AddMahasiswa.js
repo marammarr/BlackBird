@@ -220,8 +220,8 @@ render() {
  <Label>Tanggal Lahir</Label>
  <DatePicker style={styles.bg_abu2} value={this.state.formdata.tanggalLahir} onDateChange={(tgl)=>this.changeHandler("tanggalLahir",tgl)} required />
  </Form>
- <Button block transparent onPress={this.handlePostClick}>
- <Text>Done</Text>
+ <Button block backgroundColor="orange" onPress={this.handlePostClick}>
+ <Text>SIMPAN</Text>
  </Button>
  </Content>
  </Container>

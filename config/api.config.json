@@ -11,6 +11,9 @@
         "KOTA": "/kota/",
         "PROVINSI": "/provinsi/",
         "MENU": "/menu/",
-        "KRS": "/krs/"
+        "KRS": {
+            "": "/krs/",
+            "multiInsert": "/krs/multi"
+        }
     }
 }

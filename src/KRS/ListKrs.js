@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert,Platform, StyleSheet, View, StatusBar} from 'react-native';
+import {Alert,Platform, StyleSheet, View, StatusBar, TouchableHighlight} from 'react-native';
 import {
  Content, 
  Fab, 
@@ -117,9 +117,12 @@ renderList = (item,index) => {
                 <Text note>{'Semester : '+item.semester}</Text>
             </Body>
             <Right>
-                <Button  onPress={()=>this.hapusData(item)}>
-                    <Icon name="md-trash"></Icon>
-                </Button>
+                <TouchableHighlight style={{marginBottom:20}} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
+                    <Icon type="FontAwesome" name="edit"/>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={()=>this.hapusData(item)}>
+                    <Icon type="FontAwesome" name="trash"/>
+                </TouchableHighlight>
             </Right>
         </ListItem>
     )
@@ -130,7 +133,7 @@ render() {
         <View style={styles.container}>
             <StatusBar 
             backgroundColor='black'
-            barStyle="light-content"></StatusBar>
+            barStyle="light-content"/>
 
             <View style={{flex: 1}}>
                 <ListItems 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert,Platform, StyleSheet, View, StatusBar} from 'react-native';
+import {Alert,Platform, StyleSheet, View, StatusBar, TouchableHighlight} from 'react-native';
 import {
  Content, 
  Fab, 
@@ -115,12 +115,12 @@ renderList = (item,index) => {
                 <Text note>{item.alamat}</Text>
             </Body>
             <Right>
-                <Button  onPress={()=>this.props.navigation.navigate('Edit',{item})}>
-                    <Icon name="md-pencil"></Icon>
-                </Button>
-                <Button  onPress={()=>this.hapusData(item)}>
-                    <Icon name="md-trash"></Icon>
-                </Button>
+                <TouchableHighlight style={{marginBottom:20}} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
+                    <Icon type="FontAwesome" name="edit"/>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={()=>this.hapusData(item)}>
+                    <Icon type="FontAwesome" name="trash"/>
+                </TouchableHighlight>
             </Right>
         </ListItem>
     )
@@ -159,7 +159,12 @@ render() {
 
 const styles = StyleSheet.create({
     container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+    },
+    tombol_aksi: {
+        width: 24,
+        backgroundColor: 'rgba(0,0,0,0)',
+        height: 24
     }
 });
