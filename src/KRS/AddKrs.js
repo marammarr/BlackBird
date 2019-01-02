@@ -216,7 +216,7 @@ render() {
   }}
 />
 <View style={{flexDirection:'row'}}>
-    {/* <CheckBox value={this.state.cekboxSemua}/> {/* onValueChange={(value)=>this.cekSmua} /> */} */}
+    {/* <CheckBox value={this.state.cekboxSemua}/> {/* onValueChange={(value)=>this.cekSmua} /> */}
     {/* <Text>Pilih Semua</Text> */}
 </View>
 <View
