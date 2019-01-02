@@ -61,7 +61,7 @@ export default class ListKrs extends Component {
     this.setState({loading:true})
     setTimeout(() => {
         //console.log("test "+URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA)
-        axios({method:'GET',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.KRS, headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
+        axios({method:'GET',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.KRS.UTAMA, headers:{
             'Content-Type':'application/json',
             'Accepted-Language':'application/json'
         }})
@@ -78,7 +78,7 @@ export default class ListKrs extends Component {
             console.log("Error : "+err.message+", "+err.status)
             throw err;
         });
-    }, 1500)
+    }, 2500)
     }
 
    componentDidMount(){

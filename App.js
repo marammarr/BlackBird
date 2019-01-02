@@ -12,8 +12,9 @@ import React, {Component} from 'react';
 /* import Login from './src/Login'
 import {NavigationActions} from 'react-navigation'*/
 import { Root } from 'native-base';
-import { createStackNavigator, createAppContainer, createBottomTabNavigator,createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer,createSwitchNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 
 import ListMahasiswa from './src/Mahasiswa/ListMahasiswa'
 import AddMahasiswa from './src/Mahasiswa/AddMahasiswa'
@@ -86,13 +87,36 @@ const StackKrs = createStackNavigator(
         title: 'Edit KRS'
       }
     }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#20B2AA',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
   }
  )
 
  const StackPengaturan = createStackNavigator(
    {
       Pengaturan: Pengaturan
-   }
+   },
+   {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#2F4F4F',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      title: 'Pengaturan'
+    },
+  }
  )
 
 const RouteLog = createStackNavigator(
@@ -102,32 +126,39 @@ const RouteLog = createStackNavigator(
   }
 )
 
-const NavBot = createBottomTabNavigator(
+const NavBot = createMaterialBottomTabNavigator(
   {
       //RootStack : RootStack,
       Mahasiswa : {
           screen: StackMahasiswa,
           navigationOptions: {
+              tabBarColor: '#f4511e',
               tabBarIcon: ({ horizontal, tintColor }) =>
                   <Icon name="user-graduate" size={horizontal?20:25} color={tintColor} />
-          }
+          },
       },
       KRS : {
           screen: StackKrs,
           navigationOptions: {
-              tabBarIcon: ({ horizontal, tintColor }) =>
+              tabBarColor: '#20B2AA',
+              tabBarIcon: ({ horizontal, tintColor }) =>(
                   <Icon name="address-card" size={horizontal?20:25} color={tintColor} />
-          }
+              )
+          },
       },
       Pengaturan : {
           screen: StackPengaturan,
           navigationOptions: {
-              tabBarIcon: ({ horizontal, tintColor }) =>
+              tabBarColor: '#2F4F4F',
+              tabBarIcon: ({ horizontal, tintColor }) =>(
                   <Icon name="cog" size={horizontal?20:25} color={tintColor} />
-          }
+              )                 
+          },
       },
   },
   {
+      shifting: true,
+      labeled:true,
       tabBarOptions:{
           activeTintColor: 'orange',
           inactiveTintColor: 'gray'

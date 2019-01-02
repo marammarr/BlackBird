@@ -12,7 +12,7 @@
         "PROVINSI": "/provinsi/",
         "MENU": "/menu/",
         "KRS": {
-            "": "/krs/",
+            "UTAMA": "/krs/",
             "multiInsert": "/krs/multi"
         }
     }
