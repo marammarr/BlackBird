@@ -37,7 +37,6 @@ export default class Pengaturan extends Component{
             <View>
                 <Button title="Logout" color="#841584" onPress={()=>this.signOut()} />
             </View>
-            
         )
     }
 }

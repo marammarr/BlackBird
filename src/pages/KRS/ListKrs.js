@@ -14,8 +14,9 @@ import {
  Text } from "native-base"
 import axios from "axios"
 
-import ListItems from "../component/ListItems"
-import URLAPI from "../../config/api.config.json"
+import ListItems from "../../component/ListItems"
+import URLAPI from "../../../config/api.config.json"
+import marStyle from "../../../config/style.config"
 
 export default class ListKrs extends Component {
     constructor(props){
@@ -117,10 +118,10 @@ renderList = (item,index) => {
                 <Text note>{'Semester : '+item.semester}</Text>
             </Body>
             <Right>
-                <TouchableHighlight style={{marginBottom:20}} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
+                <TouchableHighlight style={marStyle.sub_btn} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
                     <Icon type="FontAwesome" name="edit"/>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={()=>this.hapusData(item)}>
+                <TouchableHighlight style={marStyle.sub_btn} onPress={()=>this.hapusData(item)}>
                     <Icon type="FontAwesome" name="trash"/>
                 </TouchableHighlight>
             </Right>

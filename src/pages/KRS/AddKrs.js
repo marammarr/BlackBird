@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { 
  Container, 
  Content,
- Title,
- DatePicker,
  Form, 
  Item, 
  Input, 
@@ -15,7 +13,7 @@ import {
  ListItem} from 'native-base';
  import  {CheckBox,TouchableHighlight,View} from 'react-native'
  import axios from 'axios';
- import URLAPI from "../../config/api.config.json"
+ import URLAPI from "../../../config/api.config.json"
  import {Picker,StyleSheet} from 'react-native'
 
 export default class AddKrs extends Component {
@@ -228,8 +226,8 @@ render() {
  {
     this.state.matakuliahs.map((row,x)=>
         <View key={x} style={{flexDirection:'row'}}>
-        <CheckBox value={row.isChecked} onValueChange={(value)=>this.checkboxHandler(row.id,value)} />
-        <Text style={{marginTop: 5}}> {row.label}</Text>
+            <CheckBox value={row.isChecked} onValueChange={(value)=>this.checkboxHandler(row.id,value)} />
+            <Text style={{marginTop: 5}}> {row.label}</Text>
         </View>
     )
 }

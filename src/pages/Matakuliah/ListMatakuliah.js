@@ -14,10 +14,11 @@ import {
  Text } from "native-base"
 import axios from "axios"
 
-import ListItems from "../component/ListItems"
-import URLAPI from "../../config/api.config.json"
+import ListItems from "../../component/ListItems"
+import URLAPI from "../../../config/api.config.json"
+import marStyle from "../../../config/style.config"
 
-export default class Homescreen extends Component {
+export default class ListMatakuliah extends Component {
     constructor(props){
     super(props);
 
@@ -35,7 +36,7 @@ export default class Homescreen extends Component {
           {text: 'NO'/* , onPress: () => console.warn('NO Pressed') */, style: 'cancel'},
           {text: 'YES', onPress: () => 
                 {   console.log("tts "+JSON.stringify(e))
-                    axios({method:'DELETE',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA, headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
+                    axios({method:'DELETE',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MATAKULIAH, headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
                         'Content-Type':'application/json',
                         'Accepted-Language':'application/json'
                         },
@@ -43,7 +44,7 @@ export default class Homescreen extends Component {
                     })
                     .then(res => {
                         console.log("tts "+JSON.stringify(res.data))
-                        this.props.navigation.navigate("Home", {
+                        this.props.navigation.navigate("List", {
                             handlePostClick:this.handlePostClick
                         })
                     })
@@ -59,14 +60,15 @@ export default class Homescreen extends Component {
 
  makeRemoteRequest = () => {
     this.setState({loading:true})
-    setTimeout(() => {
+    //setTimeout(() => {
         //console.log("test "+URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA)
-        axios({method:'GET',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MAHASISWA, headers:{//apiconfig.BASE_URL+apiconfig.ENDPOINTS.MAHASISWA
+        axios({method:'GET',url:URLAPI.BASE_URL+URLAPI.ENDPOINTS.MATAKULIAH, headers:{
             'Content-Type':'application/json',
             'Accepted-Language':'application/json'
         }})
         .then(res => {
-            console.log("tts "+JSON.stringify(res.data))
+            //console.warn("tts "+JSON.stringify(res.data))
+           // alert("tts "+JSON.stringify(res.data))
             const newData = res.data;
             this.setState({
                 loading:false,
@@ -77,7 +79,7 @@ export default class Homescreen extends Component {
             console.log("Error : "+err.message+", "+err.status)
             throw err;
         });
-    }, 1500)
+    //}, 2500)
     }
 
    componentDidMount(){
@@ -85,18 +87,17 @@ export default class Homescreen extends Component {
     }
 
 renderFooter = () => {
- if(this.state.loading === false) return null;
+    if(this.state.loading === false) return null;
 
-return (
- <View>
- <Spinner color='#1e88e5' />
- <Text 
- style={{color:"#aaa", fontSize:12, textAlign:'center', bottom:10}}
- >
- Load more data
- </Text>
- </View>
- )
+    return (
+        <View>
+            <Spinner color='#1e88e5' />
+            <Text 
+                style={{color:"#aaa", fontSize:12, textAlign:'center', bottom:10}}>
+                Mengambil data..
+            </Text>
+        </View>
+    )
  }
 
 renderList = (item,index) => {
@@ -110,15 +111,15 @@ renderList = (item,index) => {
                 <Thumbnail style={{backgroundColor:"#1e88e5"}} source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/1024px-Gnome-stock_person.svg.png' }} />
             </Left>
             <Body>
-                <Text>{item.nama}</Text>
-                <Text note>{item.nim}</Text>
-                <Text note>{item.alamat}</Text>
+                <Text>{'Kode : '+item.kdMatkul}</Text>
+                <Text note>{'Matakuliah : '+item.nama}</Text>
+                <Text note>{'Jumlah SKS : '+item.sks}</Text>
             </Body>
             <Right>
-                <TouchableHighlight style={{marginBottom:20}} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
+                <TouchableHighlight style={marStyle.sub_btn} onPress={()=>this.props.navigation.navigate('Edit',{item})}>
                     <Icon type="FontAwesome" name="edit"/>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={()=>this.hapusData(item)}>
+                <TouchableHighlight style={marStyle.sub_btn} onPress={()=>this.hapusData(item)}>
                     <Icon type="FontAwesome" name="trash"/>
                 </TouchableHighlight>
             </Right>
@@ -130,9 +131,8 @@ render() {
     return (
         <View style={styles.container}>
             <StatusBar 
-            backgroundColor='#1e88e5'
-            barStyle="light-content"
-            />
+            backgroundColor='black'
+            barStyle="light-content"/>
 
             <View style={{flex: 1}}>
                 <ListItems 
@@ -159,12 +159,7 @@ render() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-    },
-    tombol_aksi: {
-        width: 24,
-        backgroundColor: 'rgba(0,0,0,0)',
-        height: 24
+    flex: 1,
+    backgroundColor: '#F5FCFF',
     }
 });

@@ -12,19 +12,22 @@ import React, {Component} from 'react';
 /* import Login from './src/Login'
 import {NavigationActions} from 'react-navigation'*/
 import { Root } from 'native-base';
-import { createStackNavigator, createAppContainer,createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer,createSwitchNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 
-import ListMahasiswa from './src/Mahasiswa/ListMahasiswa'
-import AddMahasiswa from './src/Mahasiswa/AddMahasiswa'
-import EditMahasiswa from './src/Mahasiswa/EditMahasiswa'
-import ListKrs from './src/KRS/ListKrs'
-import AddKrs from './src/KRS/AddKrs'
-import EditKrs from './src/KRS/EditKrs'
+import ListMahasiswa from './src/pages/Mahasiswa/ListMahasiswa'
+import AddMahasiswa from './src/pages/Mahasiswa/AddMahasiswa'
+import EditMahasiswa from './src/pages/Mahasiswa/EditMahasiswa'
+import ListKrs from './src/pages/KRS/ListKrs'
+import AddKrs from './src/pages/KRS/AddKrs'
+import EditKrs from './src/pages/KRS/EditKrs'
 import Login from './src/Login'
 import Signup from './src/Signup'
 import Pengaturan from './src/pages/Pengaturan/Pengaturan'
+import Home from './src/pages/Home/Home'
+import ListMatakuliah from './src/pages/Matakuliah/ListMatakuliah';
+import AddMatakuliah from './src/pages/Matakuliah/AddMatakuliah';
 
 class App extends Component {
   render() {
@@ -33,6 +36,33 @@ class App extends Component {
     );
   }
 }
+
+const stackMatakuliah = createStackNavigator(
+  {
+    List: ListMatakuliah,
+    Add: AddMatakuliah
+  }
+)
+const StackHome = createMaterialTopTabNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions:{
+        title: 'Beranda'
+      }
+    },
+    Matakuliah: stackMatakuliah,
+
+  },
+  {
+    tabBarOptions:{
+      activeTintColor: 'white',
+      inactiveTintColor: 'rgba(255,255,255,0.8)',
+      style:{
+      }
+    }
+  }
+)
 const StackMahasiswa = createStackNavigator(
   {
      List : {
@@ -129,6 +159,14 @@ const RouteLog = createStackNavigator(
 const NavBot = createMaterialBottomTabNavigator(
   {
       //RootStack : RootStack,
+      Home: {
+        screen: StackHome,
+        navigationOptions:{
+          tabBarColor: '#5BAE00',
+          tabBarIcon: ({ horizontal,tintColor }) =>
+              <Icon name="home" size={horizontal?20:25} color={tintColor} />
+        }
+      },
       Mahasiswa : {
           screen: StackMahasiswa,
           navigationOptions: {
